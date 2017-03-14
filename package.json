@@ -2,6 +2,9 @@
   "name": "typescript-inferno-todo",
   "version": "1.0.0",
   "private": true,
+  "scripts": {
+    "dev": "webpack-dev-server"
+  },
   "author": "y0za",
   "license": "MIT",
   "devDependencies": {
