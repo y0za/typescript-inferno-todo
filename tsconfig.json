@@ -1,0 +1,24 @@
+{
+  "compilerOptions": {
+    "target": "es2015",
+    "module": "es2015",
+    "allowJs": false,
+    "sourceMap": true,
+    "moduleResolution": "node",
+    "noUnusedLocals": true,
+    "lib": [
+      "es2015",
+      "dom"
+    ],
+    "types": [
+      "inferno",
+      "inferno-hyperscript"
+    ]
+  },
+  "include": [
+    "src/**/*"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
+}
