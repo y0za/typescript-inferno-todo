@@ -1,6 +1,7 @@
 import Component from 'inferno-component'
 import h from 'inferno-hyperscript'
 import Input from './input.ts'
+import TodoList from './todo-list.ts'
 
 interface Props {}
 interface State {
@@ -16,11 +17,13 @@ export default class App extends Component<Props, State> {
   }
 
   addTitle(title: string) {
-    this.state.titles.push(title)
-    console.log(this.state.titles)
+    this.setState({ titles: [...this.state.titles, title] })
   }
 
   render() {
-    return h(Input, { add: this.addTitle.bind(this) })
+    return h('div', [
+      h(Input, { add: this.addTitle.bind(this) }),
+      h(TodoList, { todos: this.state.titles })
+    ])
   }
 }
