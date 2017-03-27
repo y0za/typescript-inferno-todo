@@ -4,8 +4,8 @@ import h from 'inferno-hyperscript'
 interface Props {
   title: string,
   completed: boolean,
-  toggle(),
-  remove()
+  toggle: () => void,
+  remove: () => void
 }
 
 interface State {}
