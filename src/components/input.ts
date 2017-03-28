@@ -5,21 +5,35 @@ interface Props {
   add(string)
 }
 interface State {
-  title: string
+  title: string,
+  inputElement: HTMLInputElement | null
 }
 
 export default class Input extends Component<Props, State> {
   constructor(props: Props) {
     super(props)
     this.state = {
-      title: ''
+      title: '',
+      inputElement: null
+    }
+  }
+
+  handleClick() {
+    this.props.add(this.state.title)
+    this.setState({ title: '' })
+    if (this.state.inputElement != null) {
+      this.state.inputElement.value = ''
     }
   }
 
   render() {
     return h('div', [
-      h('input', { type: 'text', onInput: (e) => { this.state.title = e.target.value } }),
-      h('button', { onClick: () => this.props.add(this.state.title) }, 'Add')
+      h('input', {
+        type: 'text',
+        ref: (el) => { this.state.inputElement = <HTMLInputElement>el },
+        onInput: (e) => { this.state.title = e.target.value }
+      }),
+      h('button', { onClick: this.handleClick.bind(this) }, 'Add')
     ])
   }
 }
