@@ -2,6 +2,7 @@ import Component from 'inferno-component'
 import h from 'inferno-hyperscript'
 import Input from './input.ts'
 import TodoList from './todo-list.ts'
+import Footer from './footer.ts'
 
 interface Props {}
 interface State {
@@ -54,6 +55,20 @@ export default class App extends Component<Props, State> {
     }
   }
 
+  clearCompleted() {
+    this.setState({
+      todoItems: this.state.todoItems.filter((item) => {
+        return !item.completed
+      })
+    })
+  }
+
+  clearAll() {
+    this.setState({
+      todoItems: []
+    })
+  }
+
   render() {
     return h('div', [
       h(Input, {
@@ -63,6 +78,10 @@ export default class App extends Component<Props, State> {
         todoItems: this.state.todoItems,
         toggleItem: this.toggleItem.bind(this),
         removeItem: this.removeItem.bind(this)
+      }),
+      h(Footer, {
+        clearCompleted: this.clearCompleted.bind(this),
+        clearAll: this.clearAll.bind(this)
       })
     ])
   }
