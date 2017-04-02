@@ -1,8 +1,8 @@
 import Component from 'inferno-component'
 import h from 'inferno-hyperscript'
-import Input from './input.ts'
-import TodoList from './todo-list.ts'
-import Footer from './footer.ts'
+import Input from './input'
+import TodoList from './todo-list'
+import Footer from './footer'
 
 interface Props {}
 interface State {
