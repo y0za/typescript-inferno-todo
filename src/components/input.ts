@@ -30,7 +30,7 @@ export default class Input extends Component<Props, State> {
     return h('div', [
       h('input', {
         type: 'text',
-        ref: (el) => { this.state.inputElement = <HTMLInputElement>el },
+        ref: (el) => { this.state.inputElement = (el as HTMLInputElement) },
         onInput: (e) => { this.state.title = e.target.value }
       }),
       h('button', { onClick: this.handleClick.bind(this) }, 'Add')
