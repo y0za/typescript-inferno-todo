@@ -69,6 +69,14 @@ export default class App extends Component<Props, State> {
     })
   }
 
+  leftCount(): number {
+    const count = this.state.todoItems.filter((item) => {
+      return !item.completed
+    }).length
+
+    return count
+  }
+
   render() {
     return h('div', [
       h(Input, {
@@ -81,7 +89,8 @@ export default class App extends Component<Props, State> {
       }),
       h(Footer, {
         clearCompleted: this.clearCompleted.bind(this),
-        clearAll: this.clearAll.bind(this)
+        clearAll: this.clearAll.bind(this),
+        leftCount: this.leftCount()
       })
     ])
   }
