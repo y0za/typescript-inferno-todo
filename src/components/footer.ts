@@ -21,7 +21,7 @@ export default class Footer extends Component<Props, State> {
     return h('div', [
       h('span', this.leftCountText(this.props.leftCount)),
       h('button', { onClick: this.props.clearCompleted }, 'Clear completed'),
-      h('button', { onClick: this.props.clearAll }, 'Clear lll')
+      h('button', { onClick: this.props.clearAll }, 'Clear all')
     ])
   }
 }
