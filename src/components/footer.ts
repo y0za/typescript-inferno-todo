@@ -9,9 +9,17 @@ interface Props {
 interface State {}
 
 export default class Footer extends Component<Props, State> {
+  leftCountText(count: number): string {
+    if (count === 1) {
+      return `${count} item left`
+    } else {
+      return `${count} items left`
+    }
+  }
+
   render() {
     return h('div', [
-      h('span', `${this.props.leftCount} items left`),
+      h('span', this.leftCountText(this.props.leftCount)),
       h('button', { onClick: this.props.clearCompleted }, 'Clear completed'),
       h('button', { onClick: this.props.clearAll }, 'Clear lll')
     ])
