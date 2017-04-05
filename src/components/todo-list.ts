@@ -1,3 +1,4 @@
+import { VNode } from 'inferno'
 import Component from 'inferno-component'
 import h from 'inferno-hyperscript'
 import Todo from './todo'
@@ -14,7 +15,7 @@ interface Props {
 interface State {}
 
 export default class TodoList extends Component<Props, State> {
-  render() {
+  render(): VNode {
     const todoList = this.props.todoItems.map((item, i) => {
       return h(Todo, {
         ...item,

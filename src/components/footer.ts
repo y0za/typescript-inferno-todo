@@ -1,3 +1,4 @@
+import { VNode } from 'inferno'
 import Component from 'inferno-component'
 import h from 'inferno-hyperscript'
 
@@ -17,7 +18,7 @@ export default class Footer extends Component<Props, State> {
     }
   }
 
-  render() {
+  render(): VNode {
     return h('div', [
       h('span', this.leftCountText(this.props.leftCount)),
       h('button', { onClick: this.props.clearCompleted }, 'Clear completed'),

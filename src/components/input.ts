@@ -1,3 +1,4 @@
+import { VNode } from 'inferno'
 import Component from 'inferno-component'
 import h from 'inferno-hyperscript'
 
@@ -26,7 +27,7 @@ export default class Input extends Component<Props, State> {
     }
   }
 
-  render() {
+  render(): VNode {
     return h('div', [
       h('input', {
         type: 'text',

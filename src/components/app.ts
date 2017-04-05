@@ -1,3 +1,4 @@
+import { VNode } from 'inferno'
 import Component from 'inferno-component'
 import h from 'inferno-hyperscript'
 import Input from './input'
@@ -77,7 +78,7 @@ export default class App extends Component<Props, State> {
     return count
   }
 
-  render() {
+  render(): VNode {
     return h('div', [
       h(Input, {
         add: this.addTodoItem.bind(this)
