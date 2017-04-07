@@ -21,6 +21,9 @@ export default class Footer extends Component<Props, State> {
   render(): VNode {
     return h('div', [
       h('span', this.leftCountText(this.props.leftCount)),
+      h('a', { href: '#/all', onClick: this.props.showAll }, 'All'),
+      h('a', { href: '#/active', onClick: this.props.showActive }, 'Active'),
+      h('a', { href: '#/completed', onClick: this.props.showCompleted }, 'Completed'),
       h('button', { onClick: this.props.clearCompleted }, 'Clear completed'),
       h('button', { onClick: this.props.clearAll }, 'Clear all')
     ])

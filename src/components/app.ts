@@ -4,6 +4,7 @@ import h from 'inferno-hyperscript'
 import Input from './input'
 import TodoList from './todo-list'
 import Footer from './footer'
+import { FilterType } from './todo-list'
 
 interface Props {}
 interface State {
@@ -11,13 +12,15 @@ interface State {
     title: string,
     completed: boolean
   }[]
+  filter: FilterType
 }
 
 export default class App extends Component<Props, State> {
   constructor(props: Props) {
     super(props)
     this.state = {
-      todoItems: []
+      todoItems: [],
+      filter: FilterType.None
     }
   }
 
@@ -56,6 +59,24 @@ export default class App extends Component<Props, State> {
     }
   }
 
+  showAll() {
+    this.setState({
+      filter: FilterType.None
+    })
+  }
+
+  showActive() {
+    this.setState({
+      filter: FilterType.Active
+    })
+  }
+
+  showCompleted() {
+    this.setState({
+      filter: FilterType.Completed
+    })
+  }
+
   clearCompleted() {
     this.setState({
       todoItems: this.state.todoItems.filter((item) => {
@@ -86,9 +107,13 @@ export default class App extends Component<Props, State> {
       h(TodoList, {
         todoItems: this.state.todoItems,
         toggleItem: this.toggleItem.bind(this),
-        removeItem: this.removeItem.bind(this)
+        removeItem: this.removeItem.bind(this),
+        filter: this.state.filter
       }),
       h(Footer, {
+        showAll: this.showAll.bind(this),
+        showActive: this.showActive.bind(this),
+        showCompleted: this.showCompleted.bind(this),
         clearCompleted: this.clearCompleted.bind(this),
         clearAll: this.clearAll.bind(this),
         leftCount: this.leftCount()

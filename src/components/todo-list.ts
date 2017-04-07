@@ -3,6 +3,12 @@ import Component from 'inferno-component'
 import h from 'inferno-hyperscript'
 import Todo from './todo'
 
+export enum FilterType {
+  None = 1,
+  Active,
+  Completed
+}
+
 interface Props {
   todoItems: {
     title: string,
@@ -10,19 +16,31 @@ interface Props {
   }[]
   toggleItem: (number) => () => void
   removeItem: (number) => () => void
+  filter: FilterType
 }
 
 interface State {}
 
 export default class TodoList extends Component<Props, State> {
   render(): VNode {
-    const todoList = this.props.todoItems.map((item, i) => {
-      return h(Todo, {
-        ...item,
-        toggle: this.props.toggleItem(i),
-        remove: this.props.removeItem(i)
+    const todoList = this.props.todoItems
+      .filter((item) => {
+        switch (this.props.filter) {
+          case FilterType.Active:
+            return !item.completed
+          case FilterType.Completed:
+            return item.completed
+          default:
+            return true
+        }
       })
-    })
+      .map((item, i) => {
+        return h(Todo, {
+          ...item,
+          toggle: this.props.toggleItem(i),
+          remove: this.props.removeItem(i)
+        })
+      })
 
     return h('div', todoList)
   }
