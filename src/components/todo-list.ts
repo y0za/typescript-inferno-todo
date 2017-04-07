@@ -6,10 +6,10 @@ import Todo from './todo'
 interface Props {
   todoItems: {
     title: string,
-    completed: boolean,
-    toggleItem: (number) => () => void,
-    removeItem: (number) => () => void
+    completed: boolean
   }[]
+  toggleItem: (number) => () => void
+  removeItem: (number) => () => void
 }
 
 interface State {}
