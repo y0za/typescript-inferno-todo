@@ -1,6 +1,5 @@
 import { VNode } from 'inferno'
 import Component from 'inferno-component'
-import h from 'inferno-hyperscript'
 import Input from './input'
 import TodoList from './todo-list'
 import Footer from './footer'
@@ -100,24 +99,22 @@ export default class App extends Component<Props, State> {
   }
 
   render(): VNode {
-    return h('div', [
-      h(Input, {
-        add: this.addTodoItem.bind(this)
-      }),
-      h(TodoList, {
-        todoItems: this.state.todoItems,
-        toggleItem: this.toggleItem.bind(this),
-        removeItem: this.removeItem.bind(this),
-        filter: this.state.filter
-      }),
-      h(Footer, {
-        showAll: this.showAll.bind(this),
-        showActive: this.showActive.bind(this),
-        showCompleted: this.showCompleted.bind(this),
-        clearCompleted: this.clearCompleted.bind(this),
-        clearAll: this.clearAll.bind(this),
-        leftCount: this.leftCount()
-      })
-    ])
+    return (
+      <div>
+        <Input add={this.addTodoItem.bind(this)} />
+        <TodoList todoItems={this.state.todoItems}
+          toggleItem={this.toggleItem.bind(this)}
+          removeItem={this.removeItem.bind(this)}
+          filter={this.state.filter}
+        />
+        <Footer showAll={this.showAll.bind(this)}
+          showActive={this.showActive.bind(this)}
+          showCompleted={this.showCompleted.bind(this)}
+          clearCompleted={this.clearCompleted.bind(this)}
+          clearAll={this.clearAll.bind(this)}
+          leftCount={this.leftCount()}
+        />
+      </div>
+    )
   }
 }

@@ -1,6 +1,5 @@
 import { VNode } from 'inferno'
 import Component from 'inferno-component'
-import h from 'inferno-hyperscript'
 import Todo from './todo'
 
 export enum FilterType {
@@ -35,14 +34,19 @@ export default class TodoList extends Component<Props, State> {
         }
       })
       .map((item, i) => {
-        return h(Todo, {
-          ...item,
-          toggle: this.props.toggleItem(i),
-          remove: this.props.removeItem(i)
-        })
+        return (
+          <Todo {...item}
+            toggle={this.props.toggleItem(i)}
+            remove={this.props.removeItem(i)}
+          />
+        )
       })
 
-    return h('div', todoList)
+    return (
+      <div>
+        {todoList}
+      </div>
+    )
   }
 }
 

@@ -1,6 +1,5 @@
 import { VNode } from 'inferno'
 import Component from 'inferno-component'
-import h from 'inferno-hyperscript'
 
 interface Props {
   add(string)
@@ -28,13 +27,14 @@ export default class Input extends Component<Props, State> {
   }
 
   render(): VNode {
-    return h('div', [
-      h('input', {
-        type: 'text',
-        ref: (el) => { this.state.inputElement = (el as HTMLInputElement) },
-        onInput: (e) => { this.state.title = e.target.value }
-      }),
-      h('button', { onClick: this.handleClick.bind(this) }, 'Add')
-    ])
+    return (
+      <div>
+        <input type="text"
+          ref={(el) => { this.state.inputElement = (el as HTMLInputElement) }}
+          onInput={(e) => { this.state.title = e.target.value }}
+        />
+        <button onClick={this.handleClick.bind(this)}>Add</button>
+      </div>
+    )
   }
 }
