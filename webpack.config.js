@@ -9,12 +9,12 @@ module.exports = {
     filename: 'build.js'
   },
   resolve: {
-    extensions: ['.js', '.ts']
+    extensions: ['.js', '.jsx', '.ts', '.tsx']
   },
   module: {
     rules: [
       {
-        test: /.ts$/,
+        test: /.tsx?$/,
         loaders: ['babel-loader', 'ts-loader'],
         exclude: /node_modules/
       }
